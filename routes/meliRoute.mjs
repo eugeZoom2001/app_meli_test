@@ -10,24 +10,26 @@ const routerMeli = express.Router();
 
 // Endpoint único para manejar todos los mensajes
 routerMeli.post("/", (req, res) => {
-  // const notification = req.body;
+  const notification = req.body;
   console.log("message from meli", req.body);
 
-  // try {
-  //   if (notification.topic === "orders") {
-  //     console.log("Nueva venta:", notification);
-  //     // io.emit("nuevaVenta", notification); // Enviar notificación al frontend
-  //     sendMessageToStock(notification);
-  //   } else if (notification.topic === "questions") {
-  //     console.log("Nueva pregunta:", notification);
-  //     //io.emit("nuevaPregunta", notification); // Enviar notificación al frontend
-  //     broadcastMessage(notification.resource);
-  //   }
-  //   res.status(200).send(notification);
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(400).json({ error: "bad request" }); // Identificar el tipo de notificación
-  // }
+  try {
+    if (notification.topic === "orders") {
+      console.log("Nueva venta:", notification);
+      // io.emit("nuevaVenta", notification); // Enviar notificación al frontend
+      sendMessageToStock(notification);
+    } else if (notification.topic === "questions") {
+      console.log("Nueva pregunta:", notification);
+      //io.emit("nuevaPregunta", notification); // Enviar notificación al frontend
+      broadcastMessage(
+        "Te hicieron una pregunta , responde,carajo" + notification.resource
+      );
+    }
+    res.status(200).send(notification);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "bad request" }); // Identificar el tipo de notificación
+  }
 
   res.status(200).send("respuesta de meli");
 });
