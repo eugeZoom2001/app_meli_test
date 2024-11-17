@@ -30,8 +30,6 @@ routerMeli.post("/", (req, res) => {
     console.log(error);
     res.status(400).json({ error: "bad request" }); // Identificar el tipo de notificación
   }
-
-  res.status(200).send("respuesta de meli");
 });
 
 export default routerMeli;
