@@ -12,7 +12,8 @@ const routerMeli = express.Router();
 routerMeli.post("/", (req, res) => {
   const notification = req.body;
   console.log("message from meli", req.body);
-
+  const token = process.env.ML_TOKEN;
+  console.log("TOKEN", token);
   try {
     if (notification.topic === "orders") {
       console.log("Nueva venta:", notification);
@@ -22,7 +23,8 @@ routerMeli.post("/", (req, res) => {
       console.log("Nueva pregunta:", notification);
       //io.emit("nuevaPregunta", notification); // Enviar notificación al frontend
       broadcastMessage(
-        "Te hicieron una pregunta , responde,carajo" + notification.resource
+        "Te hicieron una pregunta , responde,carajo:" +
+          notification.resource.split("/").pop()
       );
     }
     res.status(200).send(notification);
