@@ -1,9 +1,10 @@
 // sockets
 
+const isLocalhost = window.location.hostname === "localhost";
+
 export const socketConfig = {
-  url: window.location.href,
-  //url: "https://app-meli-test.onrender.com",
-  //url: "http://localhost:8800",
-  //url: "https://rm21thw.localto.net",
+  url: isLocalhost
+    ? "http://localhost:8800"
+    : "https://app-meli-test.onrender.com",
   config: { transports: ["websocket", "polling", "flashsocket"] },
 };
