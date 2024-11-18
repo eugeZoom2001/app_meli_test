@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express, { json, urlencoded } from "express";
 import cors from "cors";
-
+import { getDomain } from "./public/js/constantes.mjs";
 import routerMessages from "./routes/socketRoutes.mjs";
 import routerMeli from "./routes/meliRoute.mjs";
 import { initializeSocketService } from "./services/socketService.mjs";
@@ -36,5 +36,7 @@ const server = app.listen(port, () =>
   console.log(`Server running on http://localhost:${port}`)
 );
 
+console.log("----host ----  ", getDomain());
 // Inicializar los sockets en el mismo servidor
+
 initializeSocketService(server);
