@@ -1,6 +1,7 @@
 import { initializeSocket } from "../js/sockets/initializeSocket.mjs";
 const btnStock = document.querySelector("#idStock");
 $(function () {
+  console.log(window.location.href);
   addListeners();
 });
 
