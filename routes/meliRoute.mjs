@@ -15,7 +15,7 @@ routerMeli.post("/", (req, res) => {
   const token = process.env.ML_TOKEN;
   console.log("TOKEN", token);
   try {
-    if (notification.topic === "orders") {
+    if (notification.topic === "orders_v2") {
       console.log("Nueva venta:", notification);
       // io.emit("nuevaVenta", notification); // Enviar notificación al frontend
       sendMessageToStock(notification);
