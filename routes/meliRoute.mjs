@@ -19,7 +19,7 @@ routerMeli.post("/", (req, res) => {
       console.log("Nueva venta:", notification);
       // io.emit("nuevaVenta", notification); // Enviar notificación al frontend
 
-      sendMessageToStock(
+      broadcastMessage(
         "Te compraron algo , aguante:" + notification.resource.split("/").pop()
       );
     } else if (notification.topic === "questions") {
@@ -29,6 +29,11 @@ routerMeli.post("/", (req, res) => {
         "Te hicieron una pregunta , responde,carajo:" +
           notification.resource.split("/").pop()
       );
+    } else if (notification.topic === "messages") {
+      console.log("Nuevo mensaje:", notification);
+      // io.emit("nuevaVenta", notification); // Enviar notificación al frontend
+
+      broadcastMessage("Recibiste un mensaje:" + notification.resource);
     }
     res.status(200).send(notification);
   } catch (error) {
