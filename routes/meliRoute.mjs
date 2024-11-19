@@ -18,7 +18,10 @@ routerMeli.post("/", (req, res) => {
     if (notification.topic === "orders_v2") {
       console.log("Nueva venta:", notification);
       // io.emit("nuevaVenta", notification); // Enviar notificación al frontend
-      sendMessageToStock(notification);
+
+      sendMessageToStock(
+        "Te compraron algo , aguante:" + notification.resource.split("/").pop()
+      );
     } else if (notification.topic === "questions") {
       console.log("Nueva pregunta:", notification);
       //io.emit("nuevaPregunta", notification); // Enviar notificación al frontend
